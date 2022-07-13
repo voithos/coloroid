@@ -1,0 +1,57 @@
+# When creating a new release, this creates builds for various platforms and
+# publishes them to itch.io.
+name: Publish release
+
+on:
+  release:
+    types:
+      - created
+
+env:
+  ITCH_GAME: gmtk-game-jam-2022
+  ITCH_USER: voithos
+  DEBUG_MODE: 'true'
+
+jobs:
+  godot:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # These must match the export preset names configured within Godot.
+        platform: [linux, osx, win32, win64, html5]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2.1.0
+        with:
+          submodules: 'true'
+          fetch-depth: 0
+      - name: Configure export name
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          if [ "$PLATFORM" = "win32" ] || [ "$PLATFORM" = "win64" ] ; then
+            echo "EXPORT_NAME=$ITCH_GAME.exe" >> $GITHUB_ENV
+          elif [ "$PLATFORM" = "html5" ] ; then
+            echo "EXPORT_NAME=index.html" >> $GITHUB_ENV
+          else
+            echo "EXPORT_NAME=$ITCH_GAME" >> $GITHUB_ENV
+          fi
+      - name: Get tag
+        id: get_tag
+        run: |
+          TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          echo ::set-output name=TAG::$TAG
+      - name: Build
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.1
+        with:
+          name: ${{ env.EXPORT_NAME }}
+          preset: ${{ matrix.platform }}
+          debugMode: ${{ env.DEBUG_MODE }}
+      - name: Push to itch.io
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.1
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.platform }}
+          PACKAGE: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          VERSION: ${{ steps.get_tag.outputs.TAG }}
