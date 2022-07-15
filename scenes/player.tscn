@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/player_camera.gd" type="Script" id=1]
+[ext_resource path="res://assets/props/blob.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[node name="player" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="player_camera" type="Camera2D" parent="shape"]
+current = true
+script = ExtResource( 1 )

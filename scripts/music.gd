@@ -95,7 +95,13 @@ func _load_music():
 func play(sample):
     assert(sample in SAMPLES)
     if current_music != sample:
+        if is_instance_valid(last_musicbox):
+            last_musicbox.stop()
         var musicbox = musicboxes[sample]
         musicbox.play()
         current_music = sample
         last_musicbox = musicbox
+
+func stop():
+    last_musicbox.stop()
+    current_music = null
