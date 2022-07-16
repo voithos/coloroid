@@ -36,7 +36,7 @@ var is_fast_falling = false
 # Rolling
 const ROLL_HORIZONTAL_VEL = 300.0 # Burst roll speed
 const ROLL_HORIZONTAL_DECEL = 5 # How quickly the roll decelerates
-const ROLL_TIME = 0.3
+const ROLL_TIME = 0.38
 var roll_timer = 0
 
 # Squash and stretch
@@ -133,7 +133,7 @@ func roll(delta):
     $animation.play("roll")
     velocity.x = ROLL_HORIZONTAL_VEL * (1 - 2*int(facing_left))
     roll_timer = 0.0
-    _set_color(colors.CWHITE)
+    #_set_color(colors.CWHITE)
     $gunsprite.hide()
     if is_on_floor():
         _create_dust(false)
@@ -161,7 +161,7 @@ func _maybe_pick_random_color():
     var cidx
     while true:
         cidx = has_colors[randi()%len(has_colors)]
-        if cidx != prev_cidx:
+        if cidx != current_cidx:
             break
     _set_color(cidx)
 
