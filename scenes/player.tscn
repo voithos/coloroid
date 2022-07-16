@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/player_camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/player.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player.gd" type="Script" id=3]
+[ext_resource path="res://scenes/outline.tres" type="Material" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -156,6 +157,7 @@ collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
 texture = ExtResource( 2 )
 vframes = 4
 

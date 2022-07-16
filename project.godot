@@ -35,6 +35,7 @@ global_camera="*res://scripts/global_camera.gd"
 checkpoint_store="*res://scripts/checkpoint_store.gd"
 death_counter="*res://scripts/death_counter.gd"
 game_timer="*res://scripts/game_timer.gd"
+colors="*res://scripts/colors.gd"
 
 [display]
 

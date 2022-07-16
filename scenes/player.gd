@@ -34,7 +34,7 @@ var was_airborne = false
 var is_fast_falling = false
 
 # Rolling
-const ROLL_HORIZONTAL_VEL = 200.0 # Burst roll speed
+const ROLL_HORIZONTAL_VEL = 300.0 # Burst roll speed
 const ROLL_HORIZONTAL_DECEL = 5 # How quickly the roll decelerates
 const ROLL_TIME = 0.3
 var roll_timer = 0
@@ -50,12 +50,21 @@ var is_controllable = true
 const WALK_SFX_COOLDOWN = 0.3 # seconds
 var walk_sfx_cooldown = 0
 
+export (Array, int) var has_colors = []
+var current_cidx: int = colors.CWHITE
+var prev_cidx: int = current_cidx
+var current_color: Color = colors.COLORS[colors.CWHITE]
+
 func _ready():
+    randomize()
     add_to_group("player")
 
     _maybe_jump_to_checkpoint()
     
     _update_sprite_flip()
+    
+    if len(has_colors) > 0:
+        _set_color(has_colors[0])
     
     # Initial animation.
     is_controllable = false
@@ -73,6 +82,14 @@ func _maybe_jump_to_checkpoint():
 func _update_offset():
     $sprite.offset = Vector2(0, -6)
     $sprite.position = Vector2(0, 6)
+    
+func _set_color(c: int):
+    prev_cidx = current_cidx
+    current_cidx = c
+    current_color = colors.COLORS[c]
+
+func _process(delta):
+    _update_shader_params()
 
 func _physics_process(delta):
     _maybe_die()
@@ -103,6 +120,7 @@ func fire():
     var invec = _get_8dir_input_vector()
     projectile.fire(invec)
     projectile.global_position = global_position
+    projectile.modulate = current_color
     _add_sibling_below(projectile)
 
 func roll(delta):
@@ -111,6 +129,7 @@ func roll(delta):
     $animation.play("roll")
     velocity.x = ROLL_HORIZONTAL_VEL * (1 - 2*int(facing_left))
     roll_timer = 0.0
+    _set_color(colors.CWHITE)
     if is_on_floor():
         _create_dust(false)
 
@@ -127,7 +146,19 @@ func _stop_roll():
     is_rolling = false
     is_controllable = true
     $animation.play('idle')
+    _maybe_pick_random_color()
             
+func _maybe_pick_random_color():
+    if len(has_colors) == 0:
+        return
+    # This always picks a new color
+    var cidx
+    while true:
+        cidx = has_colors[randi()%len(has_colors)]
+        if cidx != prev_cidx:
+            break
+    _set_color(cidx)
+
 func _animate_squash_stretch(delta):
     _update_offset()
     if is_airborne and velocity.y < 0:
@@ -140,6 +171,12 @@ func _animate_squash_stretch(delta):
         squash_stretch_scale.x = lerp(squash_stretch_scale.x, 1.0, lerp_val)
         squash_stretch_scale.y = lerp(squash_stretch_scale.y, 1.0, lerp_val)
     $sprite.scale = squash_stretch_scale
+
+func _update_shader_params():
+    $sprite.material.set_shader_param('outline_color', current_color)
+    # These don't work correctly
+    #$sprite.material.set_shader_param('skip_top', is_on_ceiling())
+    #$sprite.material.set_shader_param('skip_bottom', is_on_floor())
 
 func _apply_jump_squash_stretch():
     squash_stretch_scale.x = range_lerp(abs(velocity.y), 0, JUMP_VEL, 1.0, JUMP_SQUASH_STRETCH.x)
