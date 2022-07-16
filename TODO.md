@@ -13,6 +13,7 @@
   - [ ] Create enemy death animation / system
 - [ ] Design levels?
 - [ ] Finalize key mapping and GamePad mapping
+- [ ] Replace walk sfx
 
 ## Done
 - [x] Create basic character controller

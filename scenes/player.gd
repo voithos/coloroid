@@ -196,7 +196,7 @@ func set_health(h):
         die()
 
 func _update_sprite_flip():
-    $sprite.flip_h = not facing_left
+    $sprite.flip_h = facing_left
 
 func _walk_sfx(delta):
     if !is_on_floor() or !is_moving:
@@ -209,10 +209,10 @@ func _walk_sfx(delta):
     if walk_sfx_cooldown > 0:
         walk_sfx_cooldown -= delta
 
-func _on_hurtbox_area_entered(area):
+func _on_hurtbox_area_entered(_area):
     die()
 
-func _on_hurtbox_body_entered(body):
+func _on_hurtbox_body_entered(_body):
     die()
 
 func die():
