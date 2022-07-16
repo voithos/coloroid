@@ -11,12 +11,12 @@ void fragment() {
     float size_x = 1.0 / float(textureSize(TEXTURE, 0).x);
     float size_y = 1.0 / float(textureSize(TEXTURE, 0).y);
     vec4 sprite_color = texture(TEXTURE, UV);
-    float alphascale = -8.0;
+    float alphascale = -4.0;
     if (skip_top) {
-        alphascale += 3.0;
+        alphascale += 1.0;
     }
     if (skip_bottom) {
-        alphascale += 3.0;
+        alphascale += 1.0;
     }
     float alpha = alphascale * sprite_color.a;
     alpha += texture(TEXTURE, UV + vec2(size_x, 0)).a;
@@ -27,21 +27,13 @@ void fragment() {
     if (!skip_bottom) {
         alpha += texture(TEXTURE, UV + vec2(0, -size_y)).a;
     }
-    // Outline the corners
-    if (!skip_top) {
-        alpha += texture(TEXTURE, UV + vec2(size_x, size_y)).a;
-        alpha += texture(TEXTURE, UV + vec2(-size_x, size_y)).a;
-    }
-    if (!skip_bottom) {
-        alpha += texture(TEXTURE, UV + vec2(-size_x, -size_y)).a;
-        alpha += texture(TEXTURE, UV + vec2(size_x, -size_y)).a;
-    }
+
     vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0.0, 1.0));
     COLOR = vec4(final_color.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
 }"
 
 [resource]
 shader = SubResource( 1 )
-shader_param/outline_color = null
+shader_param/outline_color = Color( 1, 1, 1, 1 )
 shader_param/skip_top = false
 shader_param/skip_bottom = false

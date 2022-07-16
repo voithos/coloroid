@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/player_camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/player.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player.gd" type="Script" id=3]
 [ext_resource path="res://scenes/outline.tres" type="Material" id=4]
+[ext_resource path="res://assets/player/player_gun.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -46,6 +47,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
+length = 0.666667
+loop = true
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
@@ -65,10 +69,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5, 0.666667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 3, 0 ), Vector2( 3, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -127,6 +131,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "run"
+length = 0.75
+loop = true
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
@@ -146,19 +153,23 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.666667, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 1 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 8, 1 ), Vector2( 8, 1 ) ]
 }
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 2
 script = ExtResource( 3 )
 
+[node name="gunsprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
 [node name="sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
 texture = ExtResource( 2 )
+hframes = 9
 vframes = 4
 
 [node name="animation" type="AnimationPlayer" parent="."]
@@ -169,7 +180,7 @@ anims/roll = SubResource( 6 )
 anims/run = SubResource( 4 )
 
 [node name="shape" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, 6, 2, 6, 2, 4, 4, 4, 4, -4, -3, -4, -3, 4, -2, 4 )
+polygon = PoolVector2Array( -3, 6, 3, 6, 3, -5, -3, -5 )
 
 [node name="player_camera" type="Camera2D" parent="."]
 current = true

@@ -58,6 +58,7 @@ var current_color: Color = colors.COLORS[colors.CWHITE]
 func _ready():
     randomize()
     add_to_group("player")
+    _duplicate_materials()
 
     _maybe_jump_to_checkpoint()
     
@@ -74,6 +75,10 @@ func _ready():
     
     is_controllable = true
     $animation.play("idle")
+
+func _duplicate_materials():
+    $sprite.material = $sprite.material.duplicate()
+    #$gunsprite.material = $gunsprite.material.duplicate()
 
 func _maybe_jump_to_checkpoint():
     if checkpoint_store.has_checkpoint():
@@ -118,9 +123,8 @@ func _physics_process(delta):
 func fire():
     var projectile =  projectile_scene.instance()
     var invec = _get_8dir_input_vector()
-    projectile.fire(invec)
+    projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = global_position
-    projectile.modulate = current_color
     _add_sibling_below(projectile)
 
 func roll(delta):
@@ -130,6 +134,7 @@ func roll(delta):
     velocity.x = ROLL_HORIZONTAL_VEL * (1 - 2*int(facing_left))
     roll_timer = 0.0
     _set_color(colors.CWHITE)
+    $gunsprite.hide()
     if is_on_floor():
         _create_dust(false)
 
@@ -146,6 +151,7 @@ func _stop_roll():
     is_rolling = false
     is_controllable = true
     $animation.play('idle')
+    $gunsprite.show()
     _maybe_pick_random_color()
             
 func _maybe_pick_random_color():
@@ -171,9 +177,11 @@ func _animate_squash_stretch(delta):
         squash_stretch_scale.x = lerp(squash_stretch_scale.x, 1.0, lerp_val)
         squash_stretch_scale.y = lerp(squash_stretch_scale.y, 1.0, lerp_val)
     $sprite.scale = squash_stretch_scale
+    $gunsprite.scale = squash_stretch_scale
 
 func _update_shader_params():
     $sprite.material.set_shader_param('outline_color', current_color)
+    #$gunsprite.material.set_shader_param('outline_color', current_color)
     # These don't work correctly
     #$sprite.material.set_shader_param('skip_top', is_on_ceiling())
     #$sprite.material.set_shader_param('skip_bottom', is_on_floor())
@@ -310,6 +318,7 @@ func set_health(h):
 
 func _update_sprite_flip():
     $sprite.flip_h = facing_left
+    $gunsprite.flip_h = facing_left
 
 func _walk_sfx(delta):
     if !is_on_floor() or !is_moving:
