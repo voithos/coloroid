@@ -32,7 +32,7 @@ var is_fast_falling = false
 # Squash and stretch
 var squash_stretch_scale = Vector2.ONE
 const JUMP_SQUASH_STRETCH = Vector2(0.8, 1.2)
-const LAND_SQUASH_STRETCH = Vector2(1.5, 0.4)
+const LAND_SQUASH_STRETCH = Vector2(1.3, 0.7)
 const SQUASH_LERP_SPEED = 10
 
 var is_controllable = true
@@ -60,6 +60,10 @@ func _maybe_jump_to_checkpoint():
     if checkpoint_store.has_checkpoint():
         global_position = checkpoint_store.get_checkpoint()
 
+func _update_offset():
+    $sprite.offset = Vector2(0, -6)
+    $sprite.position = Vector2(0, 6)
+
 func _physics_process(delta):
     _maybe_die()
     
@@ -78,6 +82,7 @@ func _physics_process(delta):
     _walk_sfx(delta)
 
 func _animate_squash_stretch(delta):
+    _update_offset()
     if is_airborne and velocity.y < 0:
         _apply_jump_squash_stretch()
     else:
