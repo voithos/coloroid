@@ -1,16 +1,19 @@
 extends KinematicBody2D
 class_name Player
 
+const dust_scene = preload("res://scenes/jump_dust_particles.tscn")
+const projectile_scene = preload("res://scenes/player_projectile.tscn")
+
 var velocity = Vector2.ZERO
 var previous_velocity = Vector2.ZERO
 
-const HORIZONTAL_VEL = 75.0
-const HORIZONTAL_ACCEL = 20 # How quickly we accelerate to max speed
+const HORIZONTAL_VEL = 100.0
+const HORIZONTAL_ACCEL = 15 # How quickly we accelerate to max speed
 
-const GRAVITY = 6.0
+const GRAVITY = 7.5
 const GRAVITY_DECREASE_THRESHOLD = 10 # The speed below which gravity is decreased.
 const GRAVITY_DECREASE_MULTIPLIER = 0.5 # The amount of decrease for low gravity (at the height of a jump).
-const JUMP_VEL = 160
+const JUMP_VEL = 220
 const TERM_VEL = JUMP_VEL * 2
 const FAST_FALL_MULTIPLIER = 1.7 # How much faster fast fall is compared to gravity
 const JUMP_SIDE_DUST_SPEED = 20 # Speed after which we emit "side" jump particles
@@ -75,11 +78,21 @@ func _physics_process(delta):
     if Input.is_action_just_pressed("restart"):
         die()
         return
+    
+    if Input.is_action_just_pressed("attack"):
+        fire()
 
     _move_player(delta)
     
     _update_sprite_flip()
     _walk_sfx(delta)
+
+func fire():
+    var projectile =  projectile_scene.instance()
+    var invec = _get_8dir_input_vector()
+    projectile.fire(invec)
+    projectile.global_position = global_position
+    _add_sibling_above(projectile)
 
 func _animate_squash_stretch(delta):
     _update_offset()
@@ -105,7 +118,6 @@ func _move_player(delta):
     var target_horizontal = 0
     var fall_multiplier = 1.0
     is_moving = false
-
 
     if Input.is_action_pressed("move_left"):
         target_horizontal -= HORIZONTAL_VEL
@@ -153,6 +165,24 @@ func _move_player(delta):
         else:
             $animation.play("idle")
 
+# TODO: Should this just be 4dir?
+func _get_8dir_input_vector():
+    var x = 0
+    var y = 0
+    if Input.is_action_pressed("move_left"):
+        x -= 1
+    if Input.is_action_pressed("move_right"):
+        x += 1
+
+    if Input.is_action_pressed("move_up"):
+        y -= 1
+    if Input.is_action_pressed("move_down"):
+        y += 1
+        
+    if x == 0 and y == 0:
+        x = -1 + 2 * int(not facing_left)
+    return Vector2(x, y).normalized()
+
 func _jump():
     is_airborne = true
     is_fast_falling = false
@@ -175,7 +205,7 @@ func _landed():
         sfx.play(sfx.WALK, sfx.QUIET_DB)
 
 func _create_dust(is_landing=false):
-    var dust = preload("res://scenes/jump_dust_particles.tscn").instance()
+    var dust =  dust_scene.instance()
     dust.flip_h = not facing_left
     dust.global_position = global_position
     _add_sibling_above(dust)
