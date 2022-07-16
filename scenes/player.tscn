@@ -18,6 +18,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [ ExtResource( 2 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
@@ -32,6 +56,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -48,6 +84,45 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 2 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "roll"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 3 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "run"
@@ -63,9 +138,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 2 ) ]
 }
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 6 )
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 2
@@ -73,15 +157,17 @@ script = ExtResource( 3 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+vframes = 4
 
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/jump = SubResource( 5 )
+anims/roll = SubResource( 6 )
 anims/run = SubResource( 4 )
 
-[node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="shape" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2, 6, 2, 6, 2, 4, 4, 4, 4, -4, -3, -4, -3, 4, -2, 4 )
 
 [node name="player_camera" type="Camera2D" parent="."]
 current = true

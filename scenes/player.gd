@@ -28,9 +28,16 @@ signal health_changed
 export (bool) var facing_left = true
 var is_dying = false
 var is_moving = false
+var is_rolling = false
 var is_airborne = false
 var was_airborne = false
 var is_fast_falling = false
+
+# Rolling
+const ROLL_HORIZONTAL_VEL = 200.0 # Burst roll speed
+const ROLL_HORIZONTAL_DECEL = 5 # How quickly the roll decelerates
+const ROLL_TIME = 0.3
+var roll_timer = 0
 
 # Squash and stretch
 var squash_stretch_scale = Vector2.ONE
@@ -71,6 +78,7 @@ func _physics_process(delta):
     _maybe_die()
     
     _animate_squash_stretch(delta)
+    _animate_roll(delta)
 
     if !is_controllable:
         return
@@ -87,13 +95,39 @@ func _physics_process(delta):
     _update_sprite_flip()
     _walk_sfx(delta)
 
+    if Input.is_action_just_pressed("roll"):
+        roll(delta)
+
 func fire():
     var projectile =  projectile_scene.instance()
     var invec = _get_8dir_input_vector()
     projectile.fire(invec)
     projectile.global_position = global_position
-    _add_sibling_above(projectile)
+    _add_sibling_below(projectile)
 
+func roll(delta):
+    is_rolling = true
+    is_controllable = false
+    $animation.play("roll")
+    velocity.x = ROLL_HORIZONTAL_VEL * (1 - 2*int(facing_left))
+    roll_timer = 0.0
+    if is_on_floor():
+        _create_dust(false)
+
+func _animate_roll(delta):
+    if is_rolling:
+        velocity.x = lerp(velocity.x, HORIZONTAL_VEL * sign(velocity.x), ROLL_HORIZONTAL_DECEL * delta)
+        _move_with_gravity(velocity, 1.0)
+        roll_timer += delta
+        
+        if roll_timer >= ROLL_TIME:
+            _stop_roll()
+
+func _stop_roll():
+    is_rolling = false
+    is_controllable = true
+    $animation.play('idle')
+            
 func _animate_squash_stretch(delta):
     _update_offset()
     if is_airborne and velocity.y < 0:
@@ -141,16 +175,10 @@ func _move_player(delta):
     if is_fast_falling:
         fall_multiplier = FAST_FALL_MULTIPLIER
 
-    # When we're nearing the top of the jump, decrease gravity.
-    var grav_multiplier = 1.0 if is_fast_falling or abs(velocity.y) > GRAVITY_DECREASE_THRESHOLD else GRAVITY_DECREASE_MULTIPLIER
-    velocity.y = min(TERM_VEL, velocity.y + GRAVITY * grav_multiplier * fall_multiplier)
-
     # Lerp horizontal movement
     velocity.x = lerp(velocity.x, target_horizontal, HORIZONTAL_ACCEL * delta)
+    _move_with_gravity(velocity, fall_multiplier)
 
-    previous_velocity = velocity
-    velocity = move_and_slide(velocity, Vector2.UP)
-    
     if was_airborne and is_on_floor():
         # Landed.
         is_airborne = false
@@ -164,6 +192,14 @@ func _move_player(delta):
             $animation.play("run")
         else:
             $animation.play("idle")
+
+func _move_with_gravity(new_vel, fall_multiplier):
+    # When we're near the top of the jump, decrease gravity.
+    var grav_multiplier = 1.0 if is_fast_falling or abs(new_vel.y) > GRAVITY_DECREASE_THRESHOLD else GRAVITY_DECREASE_MULTIPLIER
+    new_vel.y = min(TERM_VEL, new_vel.y + GRAVITY * grav_multiplier * fall_multiplier)
+
+    previous_velocity = new_vel
+    velocity = move_and_slide(new_vel, Vector2.UP)
 
 # TODO: Should this just be 4dir?
 func _get_8dir_input_vector():
@@ -223,6 +259,11 @@ func _add_sibling_above(node):
     var parent = get_parent()
     parent.add_child(node)
     parent.move_child(node, get_index())
+
+func _add_sibling_below(node):
+    var parent = get_parent()
+    parent.add_child(node)
+    parent.move_child(node, get_index()+1)
 
 func set_health(h):
     health = min(max(0, h), MAX_HEALTH)
