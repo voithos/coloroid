@@ -27,7 +27,13 @@ Polish:
 - [ ] Gun barrel coloration
 - [ ] Face decals
 - [ ] Finalize key mapping and GamePad mapping
-- [ ] Replace walk sfx
+- [ ] Add sfx
+  - [ ] Replace walk sfx
+  - [ ] Add gun sfx
+  - [ ] Add explosion sfx
+  - [ ] Add player sfx
+  - [ ] Add enemy damage sfx
+  - [ ] Add roll sfx
 - [ ] Pause menu
 
 ## Done

@@ -119,24 +119,46 @@ func _physics_process(delta):
 
     if Input.is_action_just_pressed("roll"):
         roll(delta)
+    
+    _update_gunsprite()
 
 func fire():
     var projectile =  projectile_scene.instance()
     var invec = _get_8dir_input_vector()
     projectile.fire(invec, current_cidx, current_color)
-    projectile.global_position = global_position
+    projectile.global_position = $gunsprite/gunanchor.global_position
     _add_sibling_below(projectile)
 
 func roll(delta):
     is_rolling = true
     is_controllable = false
     $animation.play("roll")
-    velocity.x = ROLL_HORIZONTAL_VEL * (1 - 2*int(facing_left))
+    velocity.x = ROLL_HORIZONTAL_VEL * _side_multiplier()
     roll_timer = 0.0
     #_set_color(colors.CWHITE)
     $gunsprite.hide()
     if is_on_floor():
         _create_dust(false)
+
+func _side_multiplier():
+    return (1 - 2*int(facing_left))
+
+func _update_gunsprite():
+    var invec = _get_8dir_input_vector()
+    $gunsprite.position.x = 0
+    $gunsprite.position.y = 0
+    # Special case fixes :\
+    if invec.y == 1.0:
+        $gunsprite.position.x = 5 * _side_multiplier()
+        $gunsprite.position.y = -1
+    if abs(invec.x) > 0.7 and invec.y > 0.7:
+        # Diagonal
+        $gunsprite.position.x = 2 * _side_multiplier()
+        $gunsprite.position.y = -1
+    # Limit to 180 degrees
+    if facing_left:
+        invec *= -1
+    $gunsprite.rotation = invec.angle()
 
 func _animate_roll(delta):
     if is_rolling:
@@ -150,7 +172,10 @@ func _animate_roll(delta):
 func _stop_roll():
     is_rolling = false
     is_controllable = true
-    $animation.play('idle')
+    if !is_on_floor():
+        $animation.play('jump')
+    else:
+        $animation.play('idle')
     $gunsprite.show()
     _maybe_pick_random_color()
             
@@ -261,7 +286,7 @@ func _get_8dir_input_vector():
         y += 1
         
     if x == 0 and y == 0:
-        x = -1 + 2 * int(not facing_left)
+        x = _side_multiplier()
     return Vector2(x, y).normalized()
 
 func _jump():
@@ -319,6 +344,8 @@ func set_health(h):
 func _update_sprite_flip():
     $sprite.flip_h = facing_left
     $gunsprite.flip_h = facing_left
+    # ;_;
+    $gunsprite/gunanchor.position.x = abs($gunsprite/gunanchor.position.x) * _side_multiplier()
 
 func _walk_sfx(delta):
     if !is_on_floor() or !is_moving:

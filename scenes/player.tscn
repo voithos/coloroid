@@ -168,6 +168,9 @@ script = ExtResource( 3 )
 [node name="gunsprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
 
+[node name="gunanchor" type="Position2D" parent="gunsprite"]
+position = Vector2( 8, 2 )
+
 [node name="sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
 texture = ExtResource( 2 )
