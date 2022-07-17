@@ -4,11 +4,11 @@ const NEXT_LEVEL_TIMEOUT = 1 # Seconds
 
 export (String, FILE, "*.tscn") var next_level
 # Note, this has no type hint because of https://github.com/godotengine/godot/issues/52140. :\
-export var background_music = music.BACKGROUND
+#export var background_music = music.BACKGROUND
 
 func _ready():
     add_to_group("level")
-    music.play(background_music)
+    music.play(music.BACKGROUND)
 
 func begin_next_level_transition():
     var timer = Timer.new()

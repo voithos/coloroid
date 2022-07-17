@@ -1,11 +1,17 @@
 extends Sprite
 
 var is_reached = false
+export var is_exit = false
 
 func _ready():
     add_to_group("checkpoints")
 
 func _on_area_area_entered(area):
+    if is_exit:
+        var level = get_tree().get_nodes_in_group("level")[0]
+        level.begin_next_level_transition()
+        return
+
     if !is_reached:
         # We need some special logic when we're spawning at a checkpoint.
         var is_spawning = false
