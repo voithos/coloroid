@@ -23,3 +23,6 @@ const COLORS = {
     C6: Color('ff5a5a'), # Red
 }
 const ALL_COLORS = [C1, C2, C3, C4, C5, C6]
+
+# HACK: Should be part of progression store, or something.
+var found_colors = []

@@ -77,6 +77,10 @@ func _ready():
     
     _update_sprite_flip()
     
+    # HACK
+    if len(colors.found_colors) > 0:
+        has_colors = colors.found_colors.duplicate()
+    
     if len(has_colors) > 0:
         _set_color(has_colors[0])
     
@@ -109,6 +113,8 @@ func _set_color(c: int):
 
 func gain_color(c: int):
     has_colors.append(c)
+    # HACK
+    colors.found_colors = has_colors.duplicate()
     _set_color(c)
 
 func _process(delta):

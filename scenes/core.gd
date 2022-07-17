@@ -10,6 +10,11 @@ func set_color(cidx: int):
     $face.frame_coords.x = cidx-1
 
 func _ready():
+    # HACK
+    if colors.found_colors.has(color_cidx):
+        # Already has color
+        queue_free()
+        return
     set_color(color_cidx)
 
 func _on_core_body_entered(body):
