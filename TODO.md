@@ -1,9 +1,6 @@
 # TODOs
 
-- [ ] "Roll recovery" to avoid rollspamming?
-  - [ ] Maybe by firing the cannon
 - [ ] Main menu
-- [ ] End screen
 
 - [ ] Play test
 - [ ] Deploy builds
@@ -18,6 +15,8 @@ Polish:
   - [ ] Add enemy damage sfx
   - [ ] Add roll sfx
   - [ ] Add enemy sfx
+- [ ] "Roll recovery" to avoid rollspamming?
+  - [ ] Maybe by firing the cannon
 - [ ] Tutorial
 - [ ] Create core pickup sound effects + cutscene
 
@@ -81,3 +80,4 @@ Scrapped:
   - ColorMan
   - United states of color
   - Monte Coloro
+- [x] End screen
