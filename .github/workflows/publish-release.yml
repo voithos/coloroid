@@ -8,7 +8,7 @@ on:
       - created
 
 env:
-  ITCH_GAME: gmtk-game-jam-2022
+  ITCH_GAME: coloroid
   ITCH_USER: voithos
   DEBUG_MODE: 'true'
 

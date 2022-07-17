@@ -227,4 +227,3 @@ position = Vector2( 872, 472 )
 
 [node name="player_start" parent="." instance=ExtResource( 11 )]
 position = Vector2( 961, 460 )
-active = true
