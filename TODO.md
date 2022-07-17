@@ -1,14 +1,10 @@
 # TODOs
 
-- [ ] Create HP / damage system
-  - [ ] Add HP ui
-  - [ ] Player death animation
+- [ ] Player death animation
 - [ ] Design healing item
 - [ ] Design pickup progression
   - [ ] Create pickup items
   - [ ] Create pickup sound effects + cutscene
-- [ ] "Roll recovery" to avoid rollspamming?
-  - [ ] Maybe by firing the cannon
 - [ ] Ignition + impact effects for bullets
 - [ ] Design levels
 
@@ -17,6 +13,8 @@
 - [ ] Deploy builds
 
 Stretch:
+- [ ] "Roll recovery" to avoid rollspamming?
+  - [ ] Maybe by firing the cannon
 - [ ] Level transitions? Or one big level with checkpoints?
 - [ ] Design complementary systems that augment the color bullets
   - [ ] Colored enemy bullets that change your color too
@@ -64,3 +62,5 @@ Polish:
 - [x] Background music
 - [x] Have bullets come out a bit ahead
 - [x] Create player damage flicker
+- [x] Create HP / damage system
+- [x] Add HP ui

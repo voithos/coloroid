@@ -98,6 +98,10 @@ func _set_color(c: int):
     current_cidx = c
     current_color = colors.COLORS[c]
 
+func gain_color(c: int):
+    has_colors.append(c)
+    _set_color(c)
+
 func _process(delta):
     _update_shader_params()
     _animate_flicker()
@@ -130,6 +134,9 @@ func _physics_process(delta):
     _update_gunsprite()
 
 func fire():
+    # Can't fire if you haven't found any colors yet
+    if len(has_colors) == 0:
+        return
     var projectile =  projectile_scene.instance()
     var invec = _get_8dir_input_vector()
     projectile.fire(invec, current_cidx, current_color)
