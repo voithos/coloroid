@@ -11,14 +11,17 @@ const BACKGROUND_QUIET_DB = -40.0
 # Preloaded sound effects.
 # ========================
 enum {
-    # TODO: Replace with actual sounds
     JUMP,
     WALK,
+    TAKE_DAMAGE,
+    PEW,
 }
 
 const SAMPLES = {
     JUMP: preload("res://assets/sfx/jump.wav"),
     WALK: preload("res://assets/sfx/walk.wav"),
+    TAKE_DAMAGE: preload("res://assets/sfx/take_damage.wav"),
+    PEW: preload("res://assets/sfx/pew.wav"),
 }
 # ========================
 

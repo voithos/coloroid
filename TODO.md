@@ -1,12 +1,8 @@
 # TODOs
 
-- [ ] Main menu
-
 - [ ] Play test
-- [ ] Deploy builds
 
 Polish:
-- [ ] Finalize key mapping and GamePad mapping
 - [ ] Add sfx
   - [ ] Replace walk sfx
   - [ ] Add gun sfx
@@ -21,6 +17,7 @@ Polish:
 - [ ] Create core pickup sound effects + cutscene
 
 Stretch:
+- [ ] Ability to shoot enemy bullets
 - [ ] Design complementary systems that augment the color bullets
   - [ ] Colored enemy bullets that change your color too
   - [ ] Rolling through a colored enemy or bullet grants you that color?
@@ -81,3 +78,6 @@ Scrapped:
   - United states of color
   - Monte Coloro
 - [x] End screen
+- [x] Main menu
+- [x] Deploy builds
+- [x] Finalize key mapping and GamePad mapping

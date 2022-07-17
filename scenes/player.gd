@@ -175,12 +175,14 @@ func fire():
     projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = $gunsprite/gunanchor.global_position
     _add_sibling_at_end(projectile)
+    sfx.play(sfx.PEW, sfx.QUIET_DB)
     $gunsprite/animation.play("muzzle")
 
 func roll(delta):
     is_rolling = true
     is_controllable = false
     $animation.play("roll")
+    sfx.play(sfx.WALK)
     velocity.x = ROLL_HORIZONTAL_VEL * _side_multiplier()
     roll_timer = 0.0
     #_set_color(colors.CWHITE)
@@ -453,6 +455,7 @@ func _take_damage(damage, color_cidx):
         return
     # Player never takes extra damage from colors.
     # TODO: Should they?
+    sfx.play(sfx.TAKE_DAMAGE, sfx.QUIET_DB)
     set_health(health - damage)
     _begin_invulernability_after_damage()
     global_camera.shake(0.35, 30, 3)
