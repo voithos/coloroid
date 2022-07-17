@@ -6,6 +6,7 @@ export (float) var size = 1.0
 
 func _ready():
     amount = int(amount * size * size) # Area is quadratic ;)
+    process_material = process_material.duplicate()
     process_material.emission_sphere_radius = process_material.emission_sphere_radius * size
     emitting = true
     one_shot = true

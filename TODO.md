@@ -1,9 +1,8 @@
 # TODOs
 
-- [ ] Design healing item
 - [ ] Design order of powerups / level
-- [ ] Player death animation
 - [ ] Checkpointing system
+- [ ] Improve tileset
 
 - [ ] Build levels
 - [ ] Play test
@@ -68,3 +67,5 @@ Scrapped:
 - [x] Create pickup items
 - [x] Ignition + impact effects for bullets
 - [x] Multiple bullet shapes
+- [x] Design healing item
+- [x] Player death animation

@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 const dust_scene = preload("res://scenes/jump_dust_particles.tscn")
+const explosion_scene = preload("res://scenes/enemy_explosion.tscn")
 const projectile_scene1 = preload("res://scenes/player_projectile.tscn")
 const projectile_scene2 = preload("res://scenes/player_projectile2.tscn")
 const projectile_scene3 = preload("res://scenes/player_projectile3.tscn")
@@ -411,10 +412,20 @@ func die():
     is_controllable = false
     death_counter.die()
     
-    $animation.play("death")
-    sfx.play(sfx.DEATH)
+    # TODO: Create a more unique death animation?
+    #$animation.play("death")
+    #sfx.play(sfx.DEATH)
     global_camera.shake(0.5, 30, 3)
-    yield($animation, "animation_finished")
+    #yield($animation, "animation_finished")
+    var explosion = explosion_scene.instance()
+    explosion.global_position = global_position
+    explosion.size = 1.5
+    explosion.process_material.initial_velocity = 15
+    explosion.modulate = current_color
+    _add_sibling_below(explosion)
+    hide()
+    yield(get_tree().create_timer(1.0), "timeout")
+    
     var level = get_tree().get_nodes_in_group("level")[0]
     level.begin_reset_transition()
 
@@ -459,7 +470,7 @@ func _update_invulnerability(delta):
         if invulnerability_timer > INVULNERABILITY_AFTER_DAMAGE:
             is_flickering = false
             _set_invulnerability(false)
-            _check_for_hitboxes()
+            call_deferred("_check_for_hitboxes")
 
 func _check_for_hitboxes():
     yield(get_tree(), "idle_frame")
