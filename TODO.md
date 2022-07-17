@@ -1,6 +1,5 @@
 # TODOs
 
-- [ ] Design order of powerups / level
 - [ ] Improve tileset
 
 - [ ] Build levels
@@ -15,9 +14,10 @@ Stretch:
   - [ ] Rolling through a colored enemy or bullet grants you that color?
   - [ ] Colored flooring
 - [ ] Main menu
+- [ ] End screen
 - [ ] Add a variant of patrol enemy
+- [ ] Add a flying enemy with bullets
 - [ ] Add an obstacle enemy
-- [ ] Add a flying enemy
 - [ ] Add drop-from-ceiling logic to patrol enemy
 - [ ] Add a boss !!!!
   - [ ] Boss music
@@ -69,3 +69,5 @@ Scrapped:
 - [x] Design healing item
 - [x] Player death animation
 - [x] Checkpointing system
+- [x] Design order of powerups / level
+- [x] Add a flying enemy

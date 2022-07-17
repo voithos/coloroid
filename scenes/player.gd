@@ -91,7 +91,10 @@ func _ready():
     yield(get_tree().create_timer(0.2), "timeout")
     
     is_controllable = true
-    $animation.play("idle")
+    if !is_on_floor():
+        $animation.play('jump')
+    else:
+        $animation.play("idle")
 
 func _duplicate_materials():
     $sprite.material = $sprite.material.duplicate()
