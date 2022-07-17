@@ -7,6 +7,8 @@ const projectile_scene = preload("res://scenes/player_projectile.tscn")
 var velocity = Vector2.ZERO
 var previous_velocity = Vector2.ZERO
 
+onready var camera = $player_camera
+
 const HORIZONTAL_VEL = 100.0
 const HORIZONTAL_ACCEL = 15 # How quickly we accelerate to max speed
 
@@ -21,7 +23,7 @@ const LAND_DUST_SPEED = 80 # Speed after which we emit dust in the landed state
 
 const JUMP_RELEASE_MULTIPLIER = 0.5 # Multiplied by velocity if button released
 
-const MAX_HEALTH = 10
+const MAX_HEALTH = 6
 var health = MAX_HEALTH
 signal health_changed
 
@@ -386,10 +388,14 @@ func _on_hurtbox_hit(damage, color_cidx):
     _take_damage(damage, color_cidx)
 
 func _take_damage(damage, color_cidx):
+    if is_flickering:
+        # Hit two things in a single frame; ignore.
+        return
     # Player never takes extra damage from colors.
     # TODO: Should they?
     set_health(health - damage)
     _begin_invulernability_after_damage()
+    global_camera.shake(0.35, 30, 3)
 
 func _set_invulnerability(is_invulnerable: bool):
     $hurtbox.set_deferred("monitoring", !is_invulnerable)

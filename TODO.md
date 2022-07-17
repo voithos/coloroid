@@ -2,8 +2,8 @@
 
 - [ ] Create HP / damage system
   - [ ] Add HP ui
-  - [ ] Create player damage flicker
   - [ ] Player death animation
+- [ ] Design healing item
 - [ ] Design pickup progression
   - [ ] Create pickup items
   - [ ] Create pickup sound effects + cutscene
@@ -11,6 +11,7 @@
   - [ ] Maybe by firing the cannon
 - [ ] Ignition + impact effects for bullets
 - [ ] Design levels
+
 - [ ] Build levels
 - [ ] Play test
 - [ ] Deploy builds
@@ -62,3 +63,4 @@ Polish:
 - [x] Create enemy death animation
 - [x] Background music
 - [x] Have bullets come out a bit ahead
+- [x] Create player damage flicker

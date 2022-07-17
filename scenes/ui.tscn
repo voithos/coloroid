@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ui.gd" type="Script" id=1]
+[ext_resource path="res://scenes/heart.tscn" type="PackedScene" id=2]
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="hp_ui" type="Node2D" parent="."]
+position = Vector2( 13, 11 )
+
+[node name="heart" parent="hp_ui" instance=ExtResource( 2 )]
+
+[node name="heart2" parent="hp_ui" instance=ExtResource( 2 )]
+position = Vector2( 20, 0 )
+frame = 1
+filled = false
