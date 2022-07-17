@@ -95,6 +95,9 @@ func _update_flip():
     # https://github.com/godotengine/godot/issues/12335
     var x_axis = global_transform.x
     global_transform.x.x = (-1 if facing_left else 1) * abs(x_axis.x)
+    var y_axis = global_transform.y
+    global_transform.y.y = (-1 if is_upside_down else 1) * abs(y_axis.y)
+        
 
 func _update_shader_params():
     if $sprite.material:

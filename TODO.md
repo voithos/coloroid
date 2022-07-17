@@ -18,7 +18,6 @@ Stretch:
 - [ ] End screen
 - [ ] Add a variant of patrol enemy
 - [ ] Add an obstacle enemy
-- [ ] Add drop-from-ceiling logic to patrol enemy
 - [ ] Add a boss !!!!
   - [ ] Boss music
 
@@ -72,3 +71,4 @@ Scrapped:
 - [x] Design order of powerups / level
 - [x] Add a flying enemy
 - [x] Add a flying enemy with bullets
+- [x] Add drop-from-ceiling logic to patrol enemy
