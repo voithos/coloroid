@@ -64,6 +64,7 @@ func _ready():
     randomize()
     add_to_group("player")
     _duplicate_materials()
+    $gunsprite/animation.play("RESET")
 
     _maybe_jump_to_checkpoint()
     
@@ -97,6 +98,7 @@ func _set_color(c: int):
     prev_cidx = current_cidx
     current_cidx = c
     current_color = colors.COLORS[c]
+    $gunsprite/muzzle.modulate = current_color
 
 func gain_color(c: int):
     has_colors.append(c)
@@ -142,6 +144,7 @@ func fire():
     projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = $gunsprite/gunanchor.global_position
     _add_sibling_below(projectile)
+    $gunsprite/animation.play("muzzle")
 
 func roll(delta):
     is_rolling = true
@@ -358,8 +361,10 @@ func set_health(h):
 func _update_sprite_flip():
     $sprite.flip_h = facing_left
     $gunsprite.flip_h = facing_left
+    $gunsprite/muzzle.flip_h = facing_left
     # ;_;
     $gunsprite/gunanchor.position.x = abs($gunsprite/gunanchor.position.x) * _side_multiplier()
+    $gunsprite/muzzle.position.x = abs($gunsprite/muzzle.position.x) * _side_multiplier()
 
 func _walk_sfx(delta):
     if !is_on_floor() or !is_moving:

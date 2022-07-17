@@ -2,8 +2,6 @@
 
 - [ ] Player death animation
 - [ ] Design healing item
-- [ ] Design pickup progression
-  - [ ] Create pickup items
   - [ ] Create pickup sound effects + cutscene
 - [ ] Ignition + impact effects for bullets
 - [ ] Design levels
@@ -64,3 +62,5 @@ Polish:
 - [x] Create player damage flicker
 - [x] Create HP / damage system
 - [x] Add HP ui
+- [x] Design pickup progression
+- [x] Create pickup items
