@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GMTK Game Jam 2022"
+config/name="Coloroid"
 run/main_scene="res://scenes/levels/main.tscn"
 config/icon="res://icon.png"
 

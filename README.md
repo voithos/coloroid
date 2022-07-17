@@ -1,4 +1,6 @@
-# GMTK Game Jam 2022
+# Coloroid
+
+Made for GMTK Game Jam 2022.
 
 ## Attribution
 
