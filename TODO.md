@@ -1,8 +1,6 @@
 # TODOs
 
-- [ ] Player death animation
 - [ ] Design healing item
-  - [ ] Create pickup sound effects + cutscene
 - [ ] Design levels
 
 - [ ] Build levels
@@ -10,9 +8,11 @@
 - [ ] Deploy builds
 
 Stretch:
+- [ ] Player death animation
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
 - [ ] Level transitions? Or one big level with checkpoints?
+  - [ ] Checkpointing system
 - [ ] Design complementary systems that augment the color bullets
   - [ ] Colored enemy bullets that change your color too
   - [ ] Rolling through a colored enemy or bullet grants you that color?
@@ -27,8 +27,6 @@ Stretch:
 - [ ] Add drop-from-ceiling logic to patrol enemy
 
 Polish:
-- [ ] Gun barrel coloration
-- [ ] Face decals
 - [ ] Finalize key mapping and GamePad mapping
 - [ ] Add sfx
   - [ ] Replace walk sfx
@@ -41,6 +39,11 @@ Polish:
 - [ ] Tutorial
 - [ ] Pause menu
 - [ ] Custom background music
+- [ ] Create core pickup sound effects + cutscene
+
+Ultrapolish:
+- [ ] Face decals (Kinda important for theme??)
+- [ ] Gun barrel coloration
 
 ## Done
 - [x] Create basic character controller

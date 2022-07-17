@@ -1,7 +1,7 @@
 tool
 extends Area2D
 
-export (int) onready var color_cidx = 1
+export (int) var color_cidx = 1
 
 func set_color(cidx: int):
     color_cidx = cidx

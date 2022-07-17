@@ -15,11 +15,11 @@ enum {
 
 const COLORS = {
     CWHITE: Color('ffffff'),
-    C1: Color('fdfe89'),
-    C2: Color('5efdf7'),
-    C3: Color('ff5dcc'),
-    C4: Color('44ff5f'),
-    C5: Color('9576ff'),
-    C6: Color('ff5a5a'),
+    C1: Color('fdfe89'), # Yellow
+    C2: Color('5efdf7'), # Cyan
+    C3: Color('ff5dcc'), # Pink
+    C4: Color('44ff5f'), # Green
+    C5: Color('9576ff'), # Purple
+    C6: Color('ff5a5a'), # Red
 }
 const ALL_COLORS = [C1, C2, C3, C4, C5, C6]

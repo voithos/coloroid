@@ -2,7 +2,12 @@ extends KinematicBody2D
 class_name Player
 
 const dust_scene = preload("res://scenes/jump_dust_particles.tscn")
-const projectile_scene = preload("res://scenes/player_projectile.tscn")
+const projectile_scene1 = preload("res://scenes/player_projectile.tscn")
+const projectile_scene2 = preload("res://scenes/player_projectile2.tscn")
+const projectile_scene3 = preload("res://scenes/player_projectile3.tscn")
+const projectile_scene4 = preload("res://scenes/player_projectile4.tscn")
+const projectile_scene5 = preload("res://scenes/player_projectile5.tscn")
+const projectile_scene6 = preload("res://scenes/player_projectile6.tscn")
 
 var velocity = Vector2.ZERO
 var previous_velocity = Vector2.ZERO
@@ -135,11 +140,26 @@ func _physics_process(delta):
     
     _update_gunsprite()
 
+func _get_projectile_scene():
+    if current_cidx == colors.C1:
+        return projectile_scene1
+    elif current_cidx == colors.C2:
+        return projectile_scene2
+    elif current_cidx == colors.C3:
+        return projectile_scene3
+    elif current_cidx == colors.C4:
+        return projectile_scene4
+    elif current_cidx == colors.C5:
+        return projectile_scene5
+    elif current_cidx == colors.C6:
+        return projectile_scene6
+    assert(false)
+
 func fire():
     # Can't fire if you haven't found any colors yet
     if len(has_colors) == 0:
         return
-    var projectile =  projectile_scene.instance()
+    var projectile =  _get_projectile_scene().instance()
     var invec = _get_8dir_input_vector()
     projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = $gunsprite/gunanchor.global_position
