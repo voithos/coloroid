@@ -1,7 +1,7 @@
 extends "res://scenes/enemies/enemy.gd"
 
 var target_player
-export (float) var targeting_range = 500
+export (float) var targeting_range = 200
 
 func _ready():
     call_deferred("_find_player")
