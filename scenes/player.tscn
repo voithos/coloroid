@@ -245,6 +245,7 @@ collision_layer = 4
 [node name="shape" parent="hurtbox" index="0"]
 shape = SubResource( 7 )
 
+[connection signal="heal" from="hurtbox" to="." method="_on_hurtbox_heal"]
 [connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]
 
 [editable path="hurtbox"]

@@ -474,3 +474,7 @@ func _check_for_hitboxes():
                 cidx = hitbox.color_cidx
         
         _take_damage(most_damage, cidx)
+
+
+func _on_hurtbox_heal(amt):
+    set_health(health + amt)

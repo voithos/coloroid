@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const explosion_scene = preload("res://scenes/enemy_explosion.tscn")
+const hp_pickup_scene = preload("res://scenes/hp_pickup.tscn")
 
 export (float) var max_health = 1.0
 onready var health = max_health
@@ -20,10 +21,13 @@ const FLASH_DURATION = 0.15
 export (float) var death_particles_size = 1.0
 export (Vector2) var death_particles_offset = Vector2.ZERO
 
+export (float) var hp_pickup_chance = 0.5
+
 func _side_multiplier():
     return (1 - 2*int(facing_left))
     
 func _ready():
+    randomize()
     _update_flip()
     _set_color(current_cidx)
     _duplicate_materials()
@@ -65,7 +69,15 @@ func die():
     explosion.size = death_particles_size
     explosion.global_position = global_position + Vector2(death_particles_offset.x * _side_multiplier(), death_particles_offset.y)
     _add_sibling_below(explosion)
+    _maybe_emit_hp_pickup()
     queue_free()
+
+func _maybe_emit_hp_pickup():
+    if randf() < hp_pickup_chance:
+        var hp_pickup = hp_pickup_scene.instance()
+        _add_sibling_above(hp_pickup)
+        hp_pickup.global_position = global_position
+        hp_pickup.add_central_force(Vector2(rand_range(-45, 45), rand_range(-40, -150)))
 
 func _set_color(c: int):
     prev_cidx = current_cidx
