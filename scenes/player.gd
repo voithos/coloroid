@@ -32,6 +32,9 @@ var is_rolling = false
 var is_airborne = false
 var was_airborne = false
 var is_fast_falling = false
+var is_flickering = false
+const INVULNERABILITY_AFTER_DAMAGE = 2.0
+var invulnerability_timer = 0.0
 
 # Rolling
 const ROLL_HORIZONTAL_VEL = 300.0 # Burst roll speed
@@ -95,12 +98,14 @@ func _set_color(c: int):
 
 func _process(delta):
     _update_shader_params()
+    _animate_flicker()
 
 func _physics_process(delta):
     _maybe_die()
     
     _animate_squash_stretch(delta)
     _animate_roll(delta)
+    _update_invulnerability(delta)
 
     if !is_controllable:
         return
@@ -358,12 +363,6 @@ func _walk_sfx(delta):
     if walk_sfx_cooldown > 0:
         walk_sfx_cooldown -= delta
 
-func _on_hurtbox_area_entered(_area):
-    die()
-
-func _on_hurtbox_body_entered(_body):
-    die()
-
 func die():
     if is_dying: return
     is_dying = true
@@ -376,10 +375,55 @@ func die():
     yield($animation, "animation_finished")
     var level = get_tree().get_nodes_in_group("level")[0]
     level.begin_reset_transition()
-    
 
 const ABYSS_DEATH_THRESHOLD_Y = 1500
 func _maybe_die():
     # Special case handling in case the player falls off the edge of the world.
     if position.y > ABYSS_DEATH_THRESHOLD_Y:
         die()
+
+func _on_hurtbox_hit(damage, color_cidx):
+    _take_damage(damage, color_cidx)
+
+func _take_damage(damage, color_cidx):
+    # Player never takes extra damage from colors.
+    # TODO: Should they?
+    set_health(health - damage)
+    _begin_invulernability_after_damage()
+
+func _set_invulnerability(is_invulnerable: bool):
+    $hurtbox.set_deferred("monitoring", !is_invulnerable)
+    $hurtbox.set_deferred("monitorable", !is_invulnerable)
+
+func _begin_invulernability_after_damage():
+    invulnerability_timer = 0.0
+    is_flickering = true
+    _set_invulnerability(true)
+
+func _animate_flicker():
+    if is_flickering:
+        modulate.a = 0.5 if Engine.get_frames_drawn() % 2 == 0 else 1.0
+    else:
+        modulate.a = 1.0
+
+func _update_invulnerability(delta):
+    if is_flickering:
+        invulnerability_timer += delta
+        if invulnerability_timer > INVULNERABILITY_AFTER_DAMAGE:
+            is_flickering = false
+            _set_invulnerability(false)
+            _check_for_hitboxes()
+
+func _check_for_hitboxes():
+    yield(get_tree(), "idle_frame")
+    # TODO: This doesn't actually work, I think because the Area2D is initially disabled so it doesn't take account of overlapping areas.
+    var hitboxes = $hurtbox.get_overlapping_areas()
+    if len(hitboxes) > 0:
+        var most_damage = 0
+        var cidx = colors.CWHITE
+        for hitbox in hitboxes:
+            if hitbox.damage > most_damage:
+                most_damage = hitbox.damage
+                cidx = hitbox.color_cidx
+        
+        _take_damage(most_damage, cidx)

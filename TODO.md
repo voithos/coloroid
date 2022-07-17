@@ -5,23 +5,29 @@
   - [ ] Create player damage flicker
   - [ ] Player death animation
 - [ ] Design pickup progression
-- [ ] Level transitions
+  - [ ] Create pickup items
+  - [ ] Create pickup sound effects + cutscene
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
+- [ ] Ignition + impact effects for bullets
+- [ ] Design levels
+- [ ] Build levels
+- [ ] Play test
+- [ ] Deploy builds
 
 Stretch:
+- [ ] Level transitions? Or one big level with checkpoints?
 - [ ] Design complementary systems that augment the color bullets
-  - [ ] Colored flooring
   - [ ] Colored enemy bullets that change your color too
-  - [ ] Rolling through a colored enemy grants you that color?
+  - [ ] Rolling through a colored enemy or bullet grants you that color?
+  - [ ] Colored flooring
 - [ ] Multiple bullet shapes
-- [ ] Have bullets come out a bit ahead
-- [ ] Ignition + impact effects for bullets
 - [ ] Main menu
 - [ ] Add a variant of patrol enemy
 - [ ] Add an obstacle enemy
 - [ ] Add a flying enemy
-- [ ] Add a boss
+- [ ] Add a boss !!!!
+  - [ ] Boss music
 - [ ] Add drop-from-ceiling logic to patrol enemy
 
 Polish:
@@ -55,3 +61,4 @@ Polish:
 - [x] Create enemy damage animation
 - [x] Create enemy death animation
 - [x] Background music
+- [x] Have bullets come out a bit ahead
