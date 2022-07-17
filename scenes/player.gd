@@ -40,6 +40,7 @@ var is_airborne = false
 var was_airborne = false
 var is_fast_falling = false
 var is_flickering = false
+var is_invulnerable = false
 const INVULNERABILITY_AFTER_DAMAGE = 2.0
 var invulnerability_timer = 0.0
 
@@ -174,6 +175,7 @@ func roll(delta):
     roll_timer = 0.0
     #_set_color(colors.CWHITE)
     $gunsprite.hide()
+    _set_invulnerability(true)
     if is_on_floor():
         _create_dust(false)
 
@@ -214,6 +216,7 @@ func _stop_roll():
     else:
         $animation.play('idle')
     $gunsprite.show()
+    _set_invulnerability(false)
     _maybe_pick_random_color()
             
 func _maybe_pick_random_color():
@@ -425,7 +428,7 @@ func _on_hurtbox_hit(damage, color_cidx):
     _take_damage(damage, color_cidx)
 
 func _take_damage(damage, color_cidx):
-    if is_flickering:
+    if is_invulnerable:
         # Hit two things in a single frame; ignore.
         return
     # Player never takes extra damage from colors.
@@ -434,7 +437,8 @@ func _take_damage(damage, color_cidx):
     _begin_invulernability_after_damage()
     global_camera.shake(0.35, 30, 3)
 
-func _set_invulnerability(is_invulnerable: bool):
+func _set_invulnerability(invulnerable: bool):
+    is_invulnerable = invulnerable
     $hurtbox.set_deferred("monitoring", !is_invulnerable)
     $hurtbox.set_deferred("monitorable", !is_invulnerable)
 

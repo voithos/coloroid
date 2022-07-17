@@ -1,30 +1,28 @@
 # TODOs
 
 - [ ] Design healing item
-- [ ] Design levels
+- [ ] Design order of powerups / level
+- [ ] Player death animation
+- [ ] Checkpointing system
 
 - [ ] Build levels
 - [ ] Play test
 - [ ] Deploy builds
 
 Stretch:
-- [ ] Player death animation
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
-- [ ] Level transitions? Or one big level with checkpoints?
-  - [ ] Checkpointing system
 - [ ] Design complementary systems that augment the color bullets
   - [ ] Colored enemy bullets that change your color too
   - [ ] Rolling through a colored enemy or bullet grants you that color?
   - [ ] Colored flooring
-- [ ] Multiple bullet shapes
 - [ ] Main menu
 - [ ] Add a variant of patrol enemy
 - [ ] Add an obstacle enemy
 - [ ] Add a flying enemy
+- [ ] Add drop-from-ceiling logic to patrol enemy
 - [ ] Add a boss !!!!
   - [ ] Boss music
-- [ ] Add drop-from-ceiling logic to patrol enemy
 
 Polish:
 - [ ] Finalize key mapping and GamePad mapping
@@ -37,13 +35,15 @@ Polish:
   - [ ] Add roll sfx
   - [ ] Add enemy sfx
 - [ ] Tutorial
-- [ ] Pause menu
-- [ ] Custom background music
 - [ ] Create core pickup sound effects + cutscene
 
 Ultrapolish:
 - [ ] Face decals (Kinda important for theme??)
 - [ ] Gun barrel coloration
+
+Scrapped:
+- [ ] Custom background music
+- [ ] Pause menu
 
 ## Done
 - [x] Create basic character controller
@@ -67,3 +67,4 @@ Ultrapolish:
 - [x] Design pickup progression
 - [x] Create pickup items
 - [x] Ignition + impact effects for bullets
+- [x] Multiple bullet shapes
