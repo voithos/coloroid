@@ -38,6 +38,7 @@ Polish:
   - [ ] Add enemy sfx
 - [ ] Tutorial
 - [ ] Pause menu
+- [ ] Custom background music
 
 ## Done
 - [x] Create basic character controller
@@ -53,3 +54,4 @@ Polish:
 - [x] Create simple enemy (walk left/right, drop from ceiling)
 - [x] Create enemy damage animation
 - [x] Create enemy death animation
+- [x] Background music

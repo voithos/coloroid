@@ -9,11 +9,11 @@ const MUSIC_DB = -24.0
 # Add music here
 # =======================
 enum {
-    EXAMPLE
+    BACKGROUND
 }
 
 const SAMPLES = {
-    EXAMPLE: preload("res://assets/music/example.mp3"),
+    BACKGROUND: preload("res://assets/music/heavens_forbid.ogg"),
 }
 # =======================
 

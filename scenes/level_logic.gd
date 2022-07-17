@@ -4,7 +4,7 @@ const NEXT_LEVEL_TIMEOUT = 1 # Seconds
 
 export (String, FILE, "*.tscn") var next_level
 # Note, this has no type hint because of https://github.com/godotengine/godot/issues/52140. :\
-export var background_music = music.EXAMPLE
+export var background_music = music.BACKGROUND
 
 func _ready():
     add_to_group("level")

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/heavens_forbid.ogg-b33b2e1b5de287e7b1ae0caf932e2d7d.oggstr"
+
+[deps]
+
+source_file="res://assets/music/heavens_forbid.ogg"
+dest_files=[ "res://.import/heavens_forbid.ogg-b33b2e1b5de287e7b1ae0caf932e2d7d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
