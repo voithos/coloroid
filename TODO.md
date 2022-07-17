@@ -4,7 +4,6 @@
   - [ ] Add HP ui
   - [ ] Create player damage flicker
   - [ ] Player death animation
-- [ ] Create enemy death animation
 - [ ] Design pickup progression
 - [ ] Level transitions
 - [ ] "Roll recovery" to avoid rollspamming?
@@ -53,3 +52,4 @@ Polish:
 - [x] Create enemy HP system
 - [x] Create simple enemy (walk left/right, drop from ceiling)
 - [x] Create enemy damage animation
+- [x] Create enemy death animation

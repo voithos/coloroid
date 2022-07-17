@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const explosion_scene = preload("res://scenes/enemy_explosion.tscn")
+
 export (float) var max_health = 1.0
 onready var health = max_health
 
@@ -14,6 +16,9 @@ var prev_cidx: int = current_cidx
 var current_color: Color = colors.COLORS[colors.CWHITE]
 
 const FLASH_DURATION = 0.15
+
+export (float) var death_particles_size = 1.0
+export (Vector2) var death_particles_offset = Vector2.ZERO
 
 func _side_multiplier():
     return (1 - 2*int(facing_left))
@@ -44,7 +49,6 @@ func do_damage(damage, color_cidx):
         else:
             multiplier = 0.5
     set_health(health - damage * multiplier)
-    print(health)
     _maybe_start_flash()
 
 func _maybe_start_flash():
@@ -57,6 +61,10 @@ func _interpolate_flash(progress):
     $sprite.material.set_shader_param("flash_intensity", intensity)
 
 func die():
+    var explosion = explosion_scene.instance()
+    explosion.size = death_particles_size
+    explosion.global_position = global_position + (death_particles_offset * _side_multiplier())
+    _add_sibling_below(explosion)
     queue_free()
 
 func _set_color(c: int):
@@ -79,3 +87,14 @@ func _update_flip():
 func _update_shader_params():
     if $sprite.material:
         $sprite.material.set_shader_param('outline_color', current_color)
+
+# Adds a sibling node above the player.
+func _add_sibling_above(node):
+    var parent = get_parent()
+    parent.add_child(node)
+    parent.move_child(node, get_index())
+
+func _add_sibling_below(node):
+    var parent = get_parent()
+    parent.add_child(node)
+    parent.move_child(node, get_index()+1)
