@@ -1,4 +1,3 @@
-tool
 extends Area2D
 
 export (int) var color_cidx = 1

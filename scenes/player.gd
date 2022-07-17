@@ -236,7 +236,7 @@ func _maybe_pick_random_color():
     var cidx
     while true:
         cidx = has_colors[randi()%len(has_colors)]
-        if cidx != current_cidx:
+        if cidx != current_cidx or len(has_colors) == 1:
             break
     _set_color(cidx)
 
