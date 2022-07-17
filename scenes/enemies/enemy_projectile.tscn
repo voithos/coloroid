@@ -20,6 +20,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "bullet"
+length = 0.4
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
@@ -27,21 +29,24 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 3 ]
+"values": [ 0, 3, 3 ]
 }
 
 [node name="projectile" instance=ExtResource( 1 )]
+speed = 40
+projectile_range = 200
 
 [node name="sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 hframes = 4
 
 [node name="animation" parent="." index="1"]
+autoplay = "bullet"
 anims/RESET = SubResource( 2 )
 anims/bullet = SubResource( 1 )
 
 [node name="hitbox" parent="." index="2"]
-collision_mask = 4
+collision_mask = 6

@@ -1,14 +1,15 @@
 # TODOs
 
 - [ ] Improve tileset
+- [ ] "Roll recovery" to avoid rollspamming?
+  - [ ] Maybe by firing the cannon
 
+- [ ] Come up with a name
 - [ ] Build levels
 - [ ] Play test
 - [ ] Deploy builds
 
 Stretch:
-- [ ] "Roll recovery" to avoid rollspamming?
-  - [ ] Maybe by firing the cannon
 - [ ] Design complementary systems that augment the color bullets
   - [ ] Colored enemy bullets that change your color too
   - [ ] Rolling through a colored enemy or bullet grants you that color?
@@ -16,7 +17,6 @@ Stretch:
 - [ ] Main menu
 - [ ] End screen
 - [ ] Add a variant of patrol enemy
-- [ ] Add a flying enemy with bullets
 - [ ] Add an obstacle enemy
 - [ ] Add drop-from-ceiling logic to patrol enemy
 - [ ] Add a boss !!!!
@@ -71,3 +71,4 @@ Scrapped:
 - [x] Checkpointing system
 - [x] Design order of powerups / level
 - [x] Add a flying enemy
+- [x] Add a flying enemy with bullets

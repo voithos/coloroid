@@ -11,9 +11,10 @@ var is_exploding = false
 func _ready():
     $explosion.hide()
 
-func fire(vel: Vector2, cidx: int, color: Color):
+func fire(vel: Vector2, cidx: int, color: Color, rotate = true):
     velocity = vel
-    rotation = vel.angle()
+    if rotate:
+        rotation = vel.angle()
     current_cidx = cidx
     $hitbox.color_cidx = current_cidx
     modulate = color
