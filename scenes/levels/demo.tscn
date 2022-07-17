@@ -33,8 +33,6 @@ position = Vector2( 297, 29 )
 
 [node name="flying_enemy" parent="enemies" instance=ExtResource( 9 )]
 position = Vector2( 52, 35 )
-collision_layer = 0
-collision_mask = 10
 
 [node name="block_enemy" parent="enemies" instance=ExtResource( 10 )]
 position = Vector2( -116, 194 )

@@ -1,12 +1,10 @@
 # TODOs
 
-- [ ] Build levels
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
 - [ ] Main menu
 - [ ] End screen
 
-- [ ] Come up with a name
 - [ ] Play test
 - [ ] Deploy builds
 
@@ -72,3 +70,14 @@ Scrapped:
 - [x] Add drop-from-ceiling logic to patrol enemy
 - [x] Add an obstacle enemy
 - [x] Improve tileset
+- [x] Build levels
+- [x] Come up with a name
+  - !!! Coloroid
+  - Dice ex machina
+  - Diceroy
+  - Coloric
+  - Koro Boy
+  - Colobot
+  - ColorMan
+  - United states of color
+  - Monte Coloro
