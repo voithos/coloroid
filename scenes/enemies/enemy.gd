@@ -75,7 +75,7 @@ func die():
 func _maybe_emit_hp_pickup():
     if randf() < hp_pickup_chance:
         var hp_pickup = hp_pickup_scene.instance()
-        _add_sibling_above(hp_pickup)
+        _add_sibling_below(hp_pickup)
         hp_pickup.global_position = global_position
         hp_pickup.add_central_force(Vector2(rand_range(-45, 45), rand_range(-40, -150)))
 
@@ -108,5 +108,5 @@ func _add_sibling_above(node):
 
 func _add_sibling_below(node):
     var parent = get_parent()
-    parent.add_child(node)
-    parent.move_child(node, get_index()+1)
+    parent.call_deferred("add_child", node)
+    parent.call_deferred("move_child", node, get_index()+1)

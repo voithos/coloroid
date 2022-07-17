@@ -1,7 +1,6 @@
 # TODOs
 
 - [ ] Design order of powerups / level
-- [ ] Checkpointing system
 - [ ] Improve tileset
 
 - [ ] Build levels
@@ -69,3 +68,4 @@ Scrapped:
 - [x] Multiple bullet shapes
 - [x] Design healing item
 - [x] Player death animation
+- [x] Checkpointing system
