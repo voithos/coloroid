@@ -143,7 +143,7 @@ func fire():
     var invec = _get_8dir_input_vector()
     projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = $gunsprite/gunanchor.global_position
-    _add_sibling_below(projectile)
+    _add_sibling_at_end(projectile)
     $gunsprite/animation.play("muzzle")
 
 func roll(delta):
@@ -351,6 +351,11 @@ func _add_sibling_below(node):
     var parent = get_parent()
     parent.add_child(node)
     parent.move_child(node, get_index()+1)
+
+func _add_sibling_at_end(node):
+    var parent = get_parent()
+    parent.add_child(node)
+    parent.move_child(node, parent.get_child_count())
 
 func set_health(h):
     health = min(max(0, h), MAX_HEALTH)

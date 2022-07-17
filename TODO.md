@@ -3,7 +3,6 @@
 - [ ] Player death animation
 - [ ] Design healing item
   - [ ] Create pickup sound effects + cutscene
-- [ ] Ignition + impact effects for bullets
 - [ ] Design levels
 
 - [ ] Build levels
@@ -64,3 +63,4 @@ Polish:
 - [x] Add HP ui
 - [x] Design pickup progression
 - [x] Create pickup items
+- [x] Ignition + impact effects for bullets

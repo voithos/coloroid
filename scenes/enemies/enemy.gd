@@ -63,7 +63,7 @@ func _interpolate_flash(progress):
 func die():
     var explosion = explosion_scene.instance()
     explosion.size = death_particles_size
-    explosion.global_position = global_position + (death_particles_offset * _side_multiplier())
+    explosion.global_position = global_position + Vector2(death_particles_offset.x * _side_multiplier(), death_particles_offset.y)
     _add_sibling_below(explosion)
     queue_free()
 

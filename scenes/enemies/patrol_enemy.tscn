@@ -46,7 +46,6 @@ tracks/0/keys = {
 script = ExtResource( 4 )
 max_health = 6.0
 max_speed = 30
-death_particles_size = 1.2
 death_particles_offset = Vector2( 1, 5 )
 
 [node name="sprite" parent="." index="0"]
