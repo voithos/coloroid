@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/player/player_projectile1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 2 )
+extents = Vector2( 3, 2 )
 
 [node name="player_projectile" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
