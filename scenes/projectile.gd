@@ -11,6 +11,7 @@ func fire(vel: Vector2, cidx: int, color: Color):
     velocity = vel
     rotation = vel.angle()
     current_cidx = cidx
+    $hitbox.color_cidx = current_cidx
     modulate = color
 
 func _physics_process(delta):

@@ -21,4 +21,6 @@ collision_layer = 8
 [node name="hitbox" parent="." instance=ExtResource( 1 )]
 collision_mask = 4
 
+[node name="tween" type="Tween" parent="."]
+
 [connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]

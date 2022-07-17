@@ -4,10 +4,7 @@
   - [ ] Add HP ui
   - [ ] Create player damage flicker
   - [ ] Player death animation
-- [ ] Create enemy HP system
-  - [ ] Create damage animation
-  - [ ] Create enemy death animation / system
-- [ ] Create simple enemy (walk left/right, drop from ceiling)
+- [ ] Create enemy death animation
 - [ ] Design pickup progression
 - [ ] Level transitions
 - [ ] "Roll recovery" to avoid rollspamming?
@@ -22,6 +19,11 @@ Stretch:
 - [ ] Have bullets come out a bit ahead
 - [ ] Ignition + impact effects for bullets
 - [ ] Main menu
+- [ ] Add a variant of patrol enemy
+- [ ] Add an obstacle enemy
+- [ ] Add a flying enemy
+- [ ] Add a boss
+- [ ] Add drop-from-ceiling logic to patrol enemy
 
 Polish:
 - [ ] Gun barrel coloration
@@ -34,6 +36,8 @@ Polish:
   - [ ] Add player sfx
   - [ ] Add enemy damage sfx
   - [ ] Add roll sfx
+  - [ ] Add enemy sfx
+- [ ] Tutorial
 - [ ] Pause menu
 
 ## Done
@@ -46,3 +50,6 @@ Polish:
 - [x] Create character movement sprites
 - [x] Create roll animation
 - [x] Pixel outline shader
+- [x] Create enemy HP system
+- [x] Create simple enemy (walk left/right, drop from ceiling)
+- [x] Create enemy damage animation
