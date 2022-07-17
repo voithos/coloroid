@@ -1,24 +1,14 @@
 # TODOs
 
-- [ ] Improve tileset
+- [ ] Build levels
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
-
-- [ ] Come up with a name
-- [ ] Build levels
-- [ ] Play test
-- [ ] Deploy builds
-
-Stretch:
-- [ ] Design complementary systems that augment the color bullets
-  - [ ] Colored enemy bullets that change your color too
-  - [ ] Rolling through a colored enemy or bullet grants you that color?
-  - [ ] Colored flooring
 - [ ] Main menu
 - [ ] End screen
-- [ ] Add a variant of patrol enemy
-- [ ] Add a boss !!!!
-  - [ ] Boss music
+
+- [ ] Come up with a name
+- [ ] Play test
+- [ ] Deploy builds
 
 Polish:
 - [ ] Finalize key mapping and GamePad mapping
@@ -33,11 +23,20 @@ Polish:
 - [ ] Tutorial
 - [ ] Create core pickup sound effects + cutscene
 
+Stretch:
+- [ ] Design complementary systems that augment the color bullets
+  - [ ] Colored enemy bullets that change your color too
+  - [ ] Rolling through a colored enemy or bullet grants you that color?
+  - [ ] Colored flooring
+- [ ] Add a variant of patrol enemy
+- [ ] Add a boss !!!!
+  - [ ] Boss music
+
 Ultrapolish:
 - [ ] Face decals (Kinda important for theme??)
-- [ ] Gun barrel coloration
 
 Scrapped:
+- [ ] Gun barrel coloration
 - [ ] Custom background music
 - [ ] Pause menu
 
@@ -72,3 +71,4 @@ Scrapped:
 - [x] Add a flying enemy with bullets
 - [x] Add drop-from-ceiling logic to patrol enemy
 - [x] Add an obstacle enemy
+- [x] Improve tileset
