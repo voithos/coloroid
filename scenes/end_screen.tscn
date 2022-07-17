@@ -8,8 +8,8 @@
 [node name="canvas" type="CanvasLayer" parent="."]
 
 [node name="End" type="Sprite" parent="canvas"]
-position = Vector2( 160, 88 )
-scale = Vector2( 0.06, 0.06 )
+position = Vector2( 160, 90 )
+scale = Vector2( 0.067, 0.067 )
 texture = ExtResource( 2 )
 
 [node name="transition" parent="." instance=ExtResource( 1 )]
