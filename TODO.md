@@ -17,7 +17,6 @@ Stretch:
 - [ ] Main menu
 - [ ] End screen
 - [ ] Add a variant of patrol enemy
-- [ ] Add an obstacle enemy
 - [ ] Add a boss !!!!
   - [ ] Boss music
 
@@ -72,3 +71,4 @@ Scrapped:
 - [x] Add a flying enemy
 - [x] Add a flying enemy with bullets
 - [x] Add drop-from-ceiling logic to patrol enemy
+- [x] Add an obstacle enemy
