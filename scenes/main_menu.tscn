@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/transition.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/startscreen.png" type="Texture" id=2]
+[ext_resource path="res://scenes/main_menu.gd" type="Script" id=3]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Startscreen" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="transition" parent="." instance=ExtResource( 1 )]

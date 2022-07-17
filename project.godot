@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Coloroid"
-run/main_scene="res://scenes/levels/main.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
