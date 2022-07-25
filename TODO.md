@@ -1,15 +1,21 @@
 # TODOs
 
-- [ ] Play test
 
-Polish:
+- [ ] Pause menu (don't use esc)
+- [ ] Sfx variety
+- [ ] Cyan should do more damage?
+- [ ] Cyan should be 3 separate bullets
+- [ ] Make red bigger
+- [ ] Firing rates per weapon type
+- [ ] Give weak point to wall enemy
+- [ ] Add another tileset
+- [ ] Block progression until you get the first weapon
+  - [ ] Breakable blocks
 - [ ] Add sfx
   - [ ] Replace walk sfx
-  - [ ] Add gun sfx
   - [ ] Add explosion sfx
   - [ ] Add player sfx
   - [ ] Add enemy damage sfx
-  - [ ] Add roll sfx
   - [ ] Add enemy sfx
 - [ ] "Roll recovery" to avoid rollspamming?
   - [ ] Maybe by firing the cannon
@@ -32,7 +38,6 @@ Ultrapolish:
 Scrapped:
 - [ ] Gun barrel coloration
 - [ ] Custom background music
-- [ ] Pause menu
 
 ## Done
 - [x] Create basic character controller
@@ -81,3 +86,6 @@ Scrapped:
 - [x] Main menu
 - [x] Deploy builds
 - [x] Finalize key mapping and GamePad mapping
+- [x] Add gun sfx
+- [x] Add roll sfx
+- [x] Play test
