@@ -175,7 +175,7 @@ func fire():
     projectile.fire(invec, current_cidx, current_color)
     projectile.global_position = $gunsprite/gunanchor.global_position
     _add_sibling_at_end(projectile)
-    sfx.play(sfx.PEW, sfx.QUIET_DB)
+    sfx.play(sfx.PEW, sfx.EVEN_QUIETER_DB)
     $gunsprite/animation.play("muzzle")
 
 func roll(delta):
@@ -360,7 +360,7 @@ func _landed():
 
         _create_dust(true)
         # The walk sound works well as a landed sound.
-        sfx.play(sfx.WALK, sfx.QUIET_DB)
+        sfx.play(sfx.WALK, sfx.EXTRA_QUIET_DB)
 
 func _create_dust(is_landing=false):
     var dust =  dust_scene.instance()
@@ -492,7 +492,7 @@ func _check_for_hitboxes():
         var most_damage = 0
         var cidx = colors.CWHITE
         for hitbox in hitboxes:
-            if hitbox.damage > most_damage:
+            if 'damage' in hitbox and hitbox.damage > most_damage:
                 most_damage = hitbox.damage
                 cidx = hitbox.color_cidx
         
