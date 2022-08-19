@@ -19,6 +19,6 @@ func _physics_process(delta):
         _maybe_fall(target_player)
     
 func _maybe_fall(player):
-    if _is_in_range() and abs(player.global_position.x - global_position.x) < FALL_THRESHOLD:
+    if _is_in_range() and abs(player.global_position.x - global_position.x) < FALL_THRESHOLD and player.global_position.y > global_position.y:
         is_upside_down = false
         _update_flip()

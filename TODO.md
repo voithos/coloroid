@@ -1,6 +1,5 @@
 # TODOs
 
-
 - [ ] Pause menu (don't use esc)
 - [ ] Sfx variety
 - [ ] Cyan should do more damage?
