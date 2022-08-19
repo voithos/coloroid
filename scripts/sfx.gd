@@ -15,6 +15,8 @@ enum {
     WALK,
     TAKE_DAMAGE,
     PEW,
+    OUCH,
+    OUCH_WEAK,
 }
 
 const SAMPLES = {
@@ -22,6 +24,8 @@ const SAMPLES = {
     WALK: preload("res://assets/sfx/walk.wav"),
     TAKE_DAMAGE: preload("res://assets/sfx/take_damage.wav"),
     PEW: preload("res://assets/sfx/pew.wav"),
+    OUCH: preload("res://assets/sfx/ouch.wav"),
+    OUCH_WEAK: preload("res://assets/sfx/ouch_weak.wav"),
 }
 # ========================
 

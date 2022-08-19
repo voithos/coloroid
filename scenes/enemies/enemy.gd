@@ -45,13 +45,18 @@ func _on_hurtbox_hit(damage, color_cidx):
     do_damage(damage, color_cidx)
 
 func do_damage(damage, color_cidx):
-    # "Correct" color does double damage by default
     var multiplier = 1.0
-    if current_cidx != colors.CWHITE:
+    if current_cidx == colors.CWHITE:
+        #sfx.play(sfx.OUCH, sfx.QUIET_DB)
+        pass
+    else:
+        # "Correct" color does double damage by default
         if color_cidx == current_cidx:
             multiplier = 2.0
+            #sfx.play(sfx.OUCH, sfx.QUIET_DB)
         else:
             multiplier = 0.5
+            #sfx.play(sfx.OUCH_WEAK, sfx.QUIET_DB)
     set_health(health - damage * multiplier)
     _maybe_start_flash()
 
