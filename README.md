@@ -12,6 +12,8 @@ enemy, shooting with the same color for extra damage!
 
 Made solo for GMTK Game Jam 2022, which had the theme "Roll of the dice".
 
+Cover art by [Lady Chamomile](https://ladychamomile.ink/)!
+
 ## License
 
 The game code (but not the assets) is licensed under the MIT license.
